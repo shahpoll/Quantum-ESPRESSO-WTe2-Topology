@@ -44,7 +44,7 @@ As shown in Figure 2, the W-$d$ states (blue) dip below the Te-$p$ states (orang
 
 // --- 2. COMPUTATIONAL METHODS ---
 = Computational Methods
-The electronic structure was calculated using **Quantum ESPRESSO (v7.4.1)** with fully relativistic Projector Augmented Wave (PAW) pseudopotentials. The Wannier tight-binding model was constructed using **Wannier90 (v3.1.0)**.
+
 
 #figure(
   table(
@@ -65,7 +65,7 @@ The electronic structure was calculated using **Quantum ESPRESSO (v7.4.1)** with
 
 // --- 3. ELECTRONIC STRUCTURE ---
 = Electronic Structure
-The relativistic band structure (Figure 3) reveals the SOC-induced gap opening at the $\Gamma$ point. While the PBE functional predicts a semimetallic ground state (negative indirect gap), the direct gap responsible for the topology remains open and inverted.
+The relativistic band structure (Figure 3) reveals the SOC-induced gap opening at the $Gamma$ point. While the PBE functional predicts a semimetallic ground state (negative indirect gap), the direct gap responsible for the topology remains open and inverted.
 
 #figure(
   image("figures/Fig1_BandStructure_Final.png", width: 85%),
