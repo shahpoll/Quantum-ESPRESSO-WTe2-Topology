@@ -17,10 +17,8 @@
 // --- TITLE BLOCK ---
 #align(center)[
   #text(18pt, weight: "bold")[Robust Quantum Spin Hall State in Monolayer 1T'-WTe#sub[2]]
-  #v(0.5em)
   #text(13pt)[Shahriar Pollob] \
-  #v(0.5em)
-  #text(10pt)[Supervised by M. Shahnoor Rahman]
+  #text(13pt)[Supervised by M. Shahnoor Rahman]
   #line(length: 100%, stroke: 0.5pt + gray)
   #v(0.8cm)
 ]
