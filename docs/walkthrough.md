@@ -9,13 +9,13 @@ Calculate the Z2 topological invariant for 1T'-WTe2 using Quantum Espresso and W
 
 The bulk band structure of 1T'-WTe2 displays the characteristic inverted band gap near the $\Gamma$ point. The bands are interpolated using Maximally Localized Wannier Functions (MLWFs) with a 2.0 eV frozen window, ensuring high fidelity near the Fermi level.
 
-![Fig1: Band Structure](/home/pollob/.gemini/antigravity/brain/3462f099-420d-4775-8ace-e09c3fd1c29d/Fig1_BandStructure_Final.png)
+![Fig1: Band Structure](../figures/Fig1_BandStructure_Final.png)
 
 ## 2. Quantized Spin Hall Conductivity
 
 The topological nature is confirmed by the non-zero Spin Hall Conductivity (SHC) plateau. The calculation uses the Kubo formula on the wannierized Hamiltonian.
 
-![Fig2: Spin Hall Conductivity](/home/pollob/.gemini/antigravity/brain/3462f099-420d-4775-8ace-e09c3fd1c29d/Fig2_SHC_Final.png)
+![Fig2: Spin Hall Conductivity](../figures/Fig2_SHC_Final.png)
 
 **Repository Access:**
 Scan to access the full codebase and data on GitHub (`shahpoll/Quantum-ESPRESSO-WTe2-Topology`).
@@ -26,7 +26,7 @@ Scan to access the full codebase and data on GitHub (`shahpoll/Quantum-ESPRESSO-
 To ensure the Wannier functions accurately represent the material, we compared the interpolated bands against explicit DFT calculations.
 **Update Phase 1.5:** We improved the topological window fit by setting `dis_froz_max = 2.0 eV`.
 
-![Validation Plot](/home/pollob/.gemini/antigravity/brain/3462f099-420d-4775-8ace-e09c3fd1c29d/validation_dft_vs_wannier.png)
+![Validation Plot](../figures/validation_dft_vs_wannier.png)
 
 The excellent agreement confirms the Wannierization quality.
 
