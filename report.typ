@@ -34,7 +34,7 @@ The realization of large-gap topological insulators is a critical milestone for 
 = Introduction
 Two-dimensional Transition Metal Dichalcogenides (TMDCs) have garnered intense interest due to their tunable electronic properties. Specifically, the 1T' structural polymorph of Tungsten Ditelluride (WTe#sub[2]) is predicted to host a Quantum Spin Hall state, characterized by conducting edge channels protected by Time Reversal Symmetry. Unlike the trivial 2H phase, the 1T' phase undergoes a spontaneous lattice distortion (Peierls instability), which lowers the crystal symmetry and dramatically alters the electronic structure.
 
-#figure(image("figures/Fig_Structure_Views_V2.png", width: 85%), caption: [Crystal Structure of 1T'-WTe#sub[2]. The distorted lattice symmetry is key to the electronic instability.])
+#figure(image("figures/Fig_Structure_Views_V2.png", width: 100%), caption: [Crystal Structure of 1T'-WTe#sub[2]. The distorted lattice symmetry is key to the electronic instability.])
 
 As illustrated in Figure 2, the interaction between the crystal field and the strong Spin-Orbit Coupling (SOC) of the Tungsten atoms leads to a fundamental band inversion. The W-$d$ orbitals dip below the Te-$p$ orbitals at the $Gamma$ point, exchanging parity eigenvalues and opening a topological gap.
 
@@ -65,7 +65,7 @@ To investigate the topological invariants, we mapped the Bloch states onto a set
 
 // --- 3. BAND STRUCTURE ANALYSIS ---
 = Electronic Structure & Band Topology
-The fully relativistic band structure (Figure 3) reveals a semimetallic ground state characteristic of the PBE functional's gap underestimation. However, the critical feature—the direct gap opening at the band inversion point—is preserved. The spin-orbit interaction lifts the degeneracy of the bands, distinguishing the system from a trivial metal.
+The fully relativistic band structure (Figure 3) reveals a semimetallic ground state characteristic of the PBE functional's gap underestimation. However, the critical feature, the direct gap opening at the band inversion point, is preserved. The spin-orbit interaction lifts the degeneracy of the bands, distinguishing the system from a trivial metal.
 
 #figure(
   image("figures/Fig1_BandStructure_Final.png", width: 85%),
@@ -76,7 +76,7 @@ The fully relativistic band structure (Figure 3) reveals a semimetallic ground s
 = Topological Verification ($Z_2 = 1$)
 We employ two independent theoretical probes to confirm the non-trivial topology.
 
-== 4.1 Spin Hall Conductivity (SHC)
+== Spin Hall Conductivity (SHC)
 The intrinsic Spin Hall Conductivity, $sigma_("xy")^("spin")$, serves as a topological order parameter. Calculated via the Kubo-Greenwood formula, the SHC exhibits a quantized plateau of $2e^2/h$ within the energy gap (Figure 4). This plateau is robust against small perturbations in the Fermi energy, providing definitive evidence of the QSH phase.
 
 #figure(
@@ -84,7 +84,7 @@ The intrinsic Spin Hall Conductivity, $sigma_("xy")^("spin")$, serves as a topol
   caption: [Calculated Spin Hall Conductivity. The quantized plateau is the hallmark transport signature of the Quantum Spin Hall state.]
 )
 
-== 4.2 Bulk-Boundary Correspondence
+== Bulk-Boundary Correspondence
 The hallmark physical manifestation of non-trivial topology is the existence of conducting states at the material's boundary. We constructed a slab Hamiltonian for a ribbon geometry of 30 unit cells. The calculated spectra (Figure 5) explicitly show helical edge states traversing the bulk band gap, connecting the valence and conduction manifolds.
 
 #figure(
@@ -102,5 +102,5 @@ To ensure the physical validity of our Wannier model, we rigorously monitored th
 
 // --- 6. CONCLUSION ---
 = Conclusion
-We have successfully characterized the topological electronic structure of monolayer 1T'-WTe#sub[2]. The convergence of multiple evidence lines—orbital inversion arguments, quantized spin transport, and explicit edge state resolution—unambiguously classifies this material as a Quantum Spin Hall insulator.
+We have successfully characterized the topological electronic structure of monolayer 1T'-WTe#sub[2]. The convergence of multiple evidence lines, orbital inversion arguments, quantized spin transport, and explicit edge state resolution, unambiguously classifies this material as a Quantum Spin Hall insulator.
 
