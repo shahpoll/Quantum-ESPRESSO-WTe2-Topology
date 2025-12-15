@@ -1,5 +1,5 @@
 // --- DOCUMENT SETUP ---
-#set document(title: "1T'-WTe2 Topological Characterization", author: "Shahriar Pollob")
+#set document(title: "Topological Characterization of 1T'-WTe2", author: "Shahriar Pollob")
 #set page(
   paper: "a4",
   margin: (x: 2cm, y: 2cm),
@@ -7,29 +7,51 @@
 )
 #set text(font: "Linux Libertine", size: 11pt)
 #set heading(numbering: "1.1")
+#show heading: it => [
+  #v(0.5em)
+  #text(weight: "bold", size: 13pt, it)
+  #v(0.3em)
+]
 
 // --- TITLE ---
 #align(center)[
-  #text(17pt, weight: "bold")[Topological Characterization of Monolayer 1T'-WTe#sub[2]]
+  #text(18pt, weight: "bold")[Topological Characterization of Monolayer 1T'-WTe#sub[2]]
   #v(0.5em)
-  #text(12pt)[Shahriar Pollob (Supervised by M. Shahnoor Rahman)] \
-  #text(10pt, style: "italic")[Generated via Quantum ESPRESSO & Wannier90 Workflow]
+  #text(13pt)[Shahriar Pollob] \
+  #text(11pt, style: "italic")[Supervised by M. Shahnoor Rahman] \
+  #v(0.5em)
+  #text(10pt)[Generated via Quantum ESPRESSO & Wannier90 Workflow]
+  #line(length: 100%, stroke: 0.5pt + gray)
   #v(1cm)
 ]
 
 // --- ABSTRACT ---
 = Abstract
-We present a complete computational characterization of the Quantum Spin Hall (QSH) phase in monolayer 1T'-WTe#sub[2]. Utilizing a fully relativistic PBE+SOC framework, we demonstrate the robustness of the $Z_2=1$ topological invariant through two complementary observables: the quantized Spin Hall Conductivity (SHC) and the existence of helical edge states in a ribbon geometry.
+We present a complete computational characterization of the Quantum Spin Hall (QSH) phase in monolayer 1T'-WTe#sub[2]. Utilizing a fully relativistic PBE+SOC framework, we demonstrate the robustness of the $Z_2=1$ topological invariant. The topological phase is verified through two complementary observables: the quantized Spin Hall Conductivity (SHC) plateau and the existence of helical edge states in a ribbon geometry. This document serves as a comprehensive report of the methodology, validation, and physical results.
 
-// --- 1. METHODS ---
+// --- 1. INTRODUCTION & PHYSICS ---
+= Introduction: The Topological Mechanism
+Monolayer Tungsten Ditelluride (1T'-WTe#sub[2]) is a transition metal dichalcogenide that exhibits a Quantum Spin Hall (QSH) state. Unlike the semiconducting 2H phase, the 1T' phase is structurally distorted (Peierls distortion), leading to a band inversion between the Tungsten $d$-orbitals and Tellurium $p$-orbitals.
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 15pt,
+  figure(image("figures/Fig_Structure_Views_V2.png", width: 100%), caption: [Crystal Structure (Distorted 1T')]),
+  figure(image("figures/Fig_PDOS_Inversion.png", width: 100%), caption: [Orbital Inversion at $E_F$])
+)
+
+As shown in Figure 2, the W-$d$ states (blue) dip below the Te-$p$ states (orange) near the Fermi level. This orbital inversion, combined with strong Spin-Orbit Coupling (SOC), opens a fundamental gap characteristic of the $Z_2=1$ topological phase.
+
+// --- 2. COMPUTATIONAL METHODS ---
 = Computational Methods
-The electronic structure was calculated using Quantum ESPRESSO (v7.4.1) with fully relativistic Projector Augmented Wave (PAW) pseudopotentials. 
+The electronic structure was calculated using **Quantum ESPRESSO (v7.4.1)** with fully relativistic Projector Augmented Wave (PAW) pseudopotentials. The Wannier tight-binding model was constructed using **Wannier90 (v3.1.0)**.
 
 #figure(
   table(
     columns: (auto, auto),
     inset: 10pt,
     align: horizon,
+    fill: (_, row) => if calc.odd(row) { luma(240) } else { white },
     [*Parameter*], [*Value*],
     "Lattice Constants", "a=3.49 Å, b=6.33 Å",
     "Vacuum Spacing", "~17.6 Å",
@@ -41,51 +63,50 @@ The electronic structure was calculated using Quantum ESPRESSO (v7.4.1) with ful
   caption: [Simulation Parameters]
 )
 
-// --- 2. ELECTRONIC STRUCTURE ---
-= Electronic Structure & Topology
-The 1T' phase exhibits a Peierls distortion that breaks the high symmetry of the 1T phase. 
-
-#grid(
-  columns: (1fr, 1fr),
-  gutter: 10pt,
-  figure(image("figures/Fig_Structure_Views_V2.png", width: 100%), caption: [Crystal Structure (Distorted 1T')]),
-  figure(image("figures/Fig_PDOS_Inversion.png", width: 100%), caption: [Orbital Inversion (p-d mixing)])
-)
-
-The inclusion of Spin-Orbit Coupling (SOC) opens a fundamental gap at the inversion point, although the PBE functional yields a semimetallic overlap globally.
+// --- 3. ELECTRONIC STRUCTURE ---
+= Electronic Structure
+The relativistic band structure (Figure 3) reveals the SOC-induced gap opening at the $\Gamma$ point. While the PBE functional predicts a semimetallic ground state (negative indirect gap), the direct gap responsible for the topology remains open and inverted.
 
 #figure(
-  image("figures/Fig1_BandStructure_Final.png", width: 80%),
+  image("figures/Fig1_BandStructure_Final.png", width: 85%),
   caption: [Relativistic Band Structure showing the inverted gap.]
 )
 
-// --- 3. TOPOLOGICAL PROOF ---
-= Topological Invariant ($Z_2 = 1$)
-We verify the non-trivial topology via two methods:
+// --- 4. TOPOLOGICAL INVARIANT ---
+= Topological Verification ($Z_2 = 1$)
+We verify the non-trivial topology using two distinct methods.
 
-== 3.1 Spin Hall Conductivity
-The Spin Hall Conductivity $sigma_("xy")^("spin")$ exhibits a quantized plateau within the bulk gap, a hallmark of the QSH state.
+== 4.1 Spin Hall Conductivity (SHC)
+The intrinsic Spin Hall Conductivity $sigma_("xy")^("spin")$ was calculated via the Kubo formula. Figure 4 shows a quantized plateau within the bulk gap, a definitive signature of the QSH state.
 
 #figure(
-  image("figures/Fig2_SHC_Final.png", width: 80%),
-  caption: [Spin Hall Conductivity Plateau.]
+  image("figures/Fig2_SHC_Final.png", width: 85%),
+  caption: [Quantized Spin Hall Conductivity Plateau.]
 )
 
-== 3.2 Bulk-Boundary Correspondence (Ribbon)
-A tight-binding calculation on a 30-unit-cell ribbon reveals gapless edge states connecting the valence and conduction bands.
+== 4.2 Bulk-Boundary Correspondence (Edge States)
+To visualize the boundary physics, we constructed a tight-binding Hamiltonian for a 30-unit-cell ribbon. Diagonalization reveals gapless helical edge states (red lines in Figure 5) connecting the valence and conduction bands.
 
 #figure(
-  image("figures/Fig_Ribbon_EdgeStates.png", width: 70%),
+  image("figures/Fig_Ribbon_EdgeStates.png", width: 75%),
   caption: [Helical Edge States traversing the bulk gap.]
 )
 
-// --- 4. VALIDATION ---
+// --- 5. VALIDATION & QUALITY CONTROL ---
 = Validation & Reproducibility
-The Wannier tight-binding model was validated against DFT ground truth. The spread convergence confirms maximally localized functions.
+To ensure numerical robustness, we verified the convergence of the Wannier minimization. The total spread converged to $< 30 \AA^2$, indicating well-localized functions.
 
 #grid(
   columns: (1fr, 1fr),
-  gutter: 10pt,
-  figure(image("figures/Fig_Credibility_Spreads.png", width: 100%), caption: [Wannier Spread Convergence]),
-  figure(image("figures/Fig_Workflow.png", width: 100%), caption: [Reproducible Workflow])
+  gutter: 15pt,
+  figure(image("figures/Fig_Credibility_Spreads.png", width: 100%), caption: [Spread Convergence]),
+  figure(image("figures/validation_dft_vs_wannier.png", width: 100%), caption: [DFT vs Wannier Overlay])
+)
+
+= Reproducibility Pipeline
+The entire workflow is automated via the scripts provided in the attached repository.
+
+#figure(
+  image("figures/Fig_Workflow.png", width: 90%),
+  caption: [Computational Workflow]
 )
