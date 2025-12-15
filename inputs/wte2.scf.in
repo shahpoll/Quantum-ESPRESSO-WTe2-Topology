@@ -1,0 +1,48 @@
+&CONTROL
+    calculation = 'scf'
+    prefix = 'wte2'
+    pseudo_dir = './'
+    outdir = './tmp'
+    tstress = .true.
+    tprnfor = .true.
+/
+&SYSTEM
+    ibrav = 0
+    nat = 6
+    ntyp = 2
+    ecutwfc = 60
+    ecutrho = 720
+    lspinorb = .true.
+    noncolin = .true.
+    occupations = 'smearing'
+    smearing = 'mv'
+    degauss = 0.001
+    nbnd = 64
+/
+&ELECTRONS
+    startingwfc = 'atomic'
+    startingpot = 'atomic'
+    mixing_beta = 0.05
+    mixing_ndim = 8
+    mixing_mode = 'local-TF'
+    conv_thr = 1.0d-8
+    diagonalization = 'cg'
+    diago_cg_maxiter = 100
+    electron_maxstep = 100
+/
+ATOMIC_SPECIES
+    W  183.84 W.rel-pbe-spn-kjpaw_psl.1.0.0.UPF
+    Te 127.60 Te.rel-pbe-n-kjpaw_psl.1.0.0.UPF
+CELL_PARAMETERS (bohr)
+6.602500000000000E+000  0.000000000000000E+000  0.000000000000000E+000
+0.000000000000000E+000  1.196000000000000E+001  0.000000000000000E+000
+0.000000000000000E+000  0.000000000000000E+000  3.779452249251541E+001
+ATOMIC_POSITIONS (bohr)
+W 3.301250000000000E+000  1.150000000000000E+001  1.889726124625770E+001
+W 0.000000000000000E+000  7.200000000000000E+000  1.889726124625770E+001
+Te 0.000000000000000E+000  2.500000000000000E+000  1.720860198129212E+001
+Te 3.301250000000000E+000  8.500000000000000E+000  1.655589057784637E+001
+Te 0.000000000000000E+000  1.050000000000000E+001  2.103643121933408E+001
+Te 3.301250000000000E+000  4.500000000000000E+000  2.038371981588833E+001
+K_POINTS (automatic)
+12 6 1 0 0 0

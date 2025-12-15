@@ -1,0 +1,45 @@
+&CONTROL
+  calculation = 'bands'
+  prefix = 'wte2'
+  outdir = './tmp'
+  pseudo_dir = './'
+  verbosity = 'high'
+/
+&SYSTEM
+  ibrav = 0
+  nat = 6, ntyp = 2
+  ecutwfc = 60
+  ecutrho = 720
+  occupations = 'smearing', smearing = 'mv', degauss = 0.01
+  noncolin = .true., lspinorb = .true.
+  nbnd = 72
+/
+&ELECTRONS
+  conv_thr = 1.0d-8
+  diagonalization = 'david'
+  mixing_beta = 0.3
+/
+CELL_PARAMETERS (angstrom)
+3.495047051   0.000000000   0.000000000
+0.000000000   6.331407284   0.000000000
+0.000000000   0.000000000  20.000000000
+
+ATOMIC_SPECIES
+W  183.84  W.rel-pbe-spn-kjpaw_psl.1.0.0.UPF
+Te 127.60  Te.rel-pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS (crystal)
+W        0.500000000   0.961538000   0.500000000
+W        0.000000000   0.602007000   0.500000000
+Te       0.000000000   0.209029000   0.455320000
+Te       0.500000000   0.710702000   0.438050000
+Te       0.000000000   0.877926000   0.556600000
+Te       0.500000000   0.376254000   0.539330000
+
+K_POINTS crystal_b
+5
+0.0 0.0 0.0 20 ! G
+0.5 0.0 0.0 20 ! X
+0.5 0.5 0.0 20 ! M
+0.0 0.0 0.0 20 ! G
+0.0 0.5 0.0 20 ! Y

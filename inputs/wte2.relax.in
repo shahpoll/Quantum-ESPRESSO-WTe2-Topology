@@ -1,0 +1,53 @@
+&CONTROL
+    calculation = 'relax'
+    prefix = 'wte2'
+    pseudo_dir = './'
+    outdir = './tmp'
+    tstress = .true.
+    tprnfor = .true.
+/
+&SYSTEM
+    ibrav = 0
+    nat = 6
+    ntyp = 2
+    ecutwfc = 60
+    ecutrho = 720
+    lspinorb = .true.
+    noncolin = .true.
+    occupations = 'smearing'
+    smearing = 'mv'
+    degauss = 0.02
+/
+&ELECTRONS
+    startingwfc = 'file'
+    startingpot = 'file'
+    mixing_beta = 0.05
+    mixing_ndim = 4
+    mixing_mode = 'local-TF'
+    conv_thr = 1.0d-6
+    diagonalization = 'david'
+    electron_maxstep = 400
+/
+&IONS
+    ion_dynamics = 'bfgs'
+/
+&CELL
+    cell_dofree = '2Dxy'
+    press_conv_thr = 0.5
+/
+ATOMIC_SPECIES
+    W  183.84 W.rel-pbe-spn-kjpaw_psl.1.0.0.UPF
+    Te 127.60 Te.rel-pbe-n-kjpaw_psl.1.0.0.UPF
+ATOMIC_POSITIONS (crystal)
+W   0.50000   0.95715   0.50000
+W   0.00000   0.60184   0.50000
+Te  0.00000   0.20622   0.45532
+Te  0.50000   0.69853   0.43805
+Te  0.00000   0.86046   0.55660
+Te  0.50000   0.35277   0.53933
+K_POINTS (automatic)
+12 6 1 0 0 0
+CELL_PARAMETERS (angstrom)
+3.510 0.000 0.000
+0.000 6.316 0.000
+0.000 0.000 20.000

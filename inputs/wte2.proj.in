@@ -1,0 +1,6 @@
+&PROJWFC
+  prefix = 'wte2'
+  outdir = './tmp'
+  Emin = -5.0, Emax = 5.0, DeltaE = 0.01
+  filpdos = 'wte2.pdos'
+/

@@ -1,0 +1,35 @@
+# Topological Invariance of 1T'-WTe2
+
+- [x] Check Hardware and Environment
+    - [x] Identify CPU/GPU resources
+    - [x] Locate Pseudopotentials
+    - [x] **Swap Expansion:** +20GB Virtual RAM Activated
+- [/] Step 1: Variable Cell Relaxation (vc-relax)
+    - [x] Create input file `wte2.vc-relax.in`
+    - [x] Run `vc-relax` calculation (Failed - IEEE Errors)
+    - [x] Recovery Step 1a: Run `relax` (Fixed Cell) - **COMPLETED**
+    - [x] Recovery Step 1b: Retry `vc-relax` (Relax Cell) - **COMPLETED (PID 1061116)**
+    - [x] Verify against DFT (`validation_dft_vs_wannier.png`) (Completed)
+  - [x] Generate Methods Table (`methods_table.md`) (Completed)
+  - [x] Visual Physics Checks (Structure + PDOS) - **COMPLETED**
+  - [x] Credibility Suite (RMS + Seeds) - **COMPLETED**
+- [/] Step 2: Self-Consistent Field (SCF)
+    - [x] Update coordinates from `vc-relax`
+    - [x] Create input file `wte2.scf.in`
+    - [/] Run `scf` calculation - **IN PROGRESS (God Mode: 60/720)**
+- [/] Step 3: Parity Analysis (The Z2 Check)
+    - [x] Create input file `wte2.bands.in` (4 TRIM points)
+    - [x] Run `bands` calculation - **SUCCESS**
+    - [x] Run `bands` calculation (Recovery) - **SKIPPED (First attempt recovered)**
+- [/] Step 4: Wannier90 & Wilson Loop (Primary Z2)
+    - [x] Run `nscf` calculation - **SUCCESS**
+    - [x] Run `wannier90 -pp` - **SUCCESS**
+    - [x] Run `pw2wannier90` - **SUCCESS**
+    - [x] Run `wannier90` (Minimization) - **SUCCESS**
+    - [x] Run Wilson Loop Analysis (Z2) - **SUCCESS (SHC Calculated)**
+    - [ ] Run Wilson Loop Analysis
+- [x] Documentation & Reporting
+    - [x] Maintain `work_log.md` (Symlinked to workspace)
+    - [x] Final Polish (SHC Shading + Ribbon Contrast) - **DONE**
+    - [x] **Project Status:** GOD MODE RUNNING (RAM: 12GB - Stable)
+    - [x] GitHub Deployment (`shahpoll/WTe2-Topology-Workflow`) - **DONE**
