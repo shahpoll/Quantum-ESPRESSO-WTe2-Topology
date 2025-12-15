@@ -32,4 +32,4 @@
     - [x] Maintain `work_log.md` (Symlinked to workspace)
     - [x] Final Polish (SHC Shading + Ribbon Contrast) - **DONE**
     - [x] **Project Status:** GOD MODE RUNNING (RAM: 12GB - Stable)
-    - [x] GitHub Deployment (`shahpoll/WTe2-Topology-Workflow`) - **DONE**
+    - [x] GitHub Deployment (`shahpoll/Quantum-ESPRESSO-WTe2-Topology`) - **DONE**

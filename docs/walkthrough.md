@@ -18,8 +18,8 @@ The topological nature is confirmed by the non-zero Spin Hall Conductivity (SHC)
 ![Fig2: Spin Hall Conductivity](/home/pollob/.gemini/antigravity/brain/3462f099-420d-4775-8ace-e09c3fd1c29d/Fig2_SHC_Final.png)
 
 **Repository Access:**
-Scan to access the full codebase and data on GitHub (`shahpoll/WTe2-Topology-Workflow`).
-![GitHub Repo QR](/home/pollob/.gemini/antigravity/brain/3462f099-420d-4775-8ace-e09c3fd1c29d/Fig_Repo_QR.png)
+Scan to access the full codebase and data on GitHub (`shahpoll/Quantum-ESPRESSO-WTe2-Topology`).
+![GitHub Repo QR](figures/Fig_Repo_QR.png)
 
 ## 4. Quality Control (DFT vs Wannier Validation)
 
