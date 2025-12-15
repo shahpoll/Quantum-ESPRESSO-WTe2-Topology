@@ -18,9 +18,6 @@
 // Apply math color
 #show math.equation: set text(fill: math-color)
 
-// Define missing symbols
-#let hbar = math.planck.reduce
-
 // --- SLIDE FUNCTION ---
 #let slide(title: none, body) = {
   if title != none {
@@ -80,12 +77,12 @@
   
   *1. First-Principles Hamiltonian (DFT):*
   Solving the Kohn-Sham equations with relativistic pseudopotentials (PBE + SOC):
-
+  $ [ -planck.reduce^2 / (2m) nabla^2 + V_(eff)(vec(r)) ] psi_i = epsilon_i psi_i $
   
   *2. Topological Invariant (Kubo Formula):*
   The Spin Hall Conductivity (SHC) is calculated via the Berry Curvature $Omega_{n}(vec(k))$:
   
-  $ sigma_(xy)^(spin) = e^2 / hbar sum_n integral_(BZ) (d^2k) / ((2 pi)^2) f_n(vec(k)) Omega_(n,xy)^(spin)(vec(k)) $
+  $ sigma_(xy)^(spin) = e^2 / planck.reduce sum_n integral_(BZ) (d^2k) / ((2 pi)^2) f_n(vec(k)) Omega_(n,xy)^(spin)(vec(k)) $
   
   *Tools:* Quantum ESPRESSO $arrow$ Wannier90 $arrow$ PostW90
 ]
