@@ -45,8 +45,8 @@ def main():
         out = inp.replace(".in", ".out")
         
         print(f"Running Cutoff {cut} Ry...")
-        # Run PW.x (Adjust command if needed, e.g., mpirun)
-        os.system(f"pw.x < {inp} > {OUT_DIR}/{out}")
+        # Run PW.x with MPI (4 cores)
+        os.system(f"mpirun -np 4 pw.x < {inp} > {OUT_DIR}/{out}")
         
         E = get_energy(f"{OUT_DIR}/{out}")
         if E:
