@@ -45,8 +45,8 @@ def main():
         out = inp.replace(".in", ".out")
         
         print(f"Running Cutoff {cut} Ry...")
-        # Run PW.x with MPI (4 cores)
-        os.system(f"mpirun -np 4 pw.x < {inp} > {OUT_DIR}/{out}")
+        # Run PW.x with MPI (4 cores) and disable HCOLL to prevent errors
+        os.system(f"export OMPI_MCA_coll_hcoll_enable=0; mpirun -np 4 pw.x < {inp} > {OUT_DIR}/{out}")
         
         E = get_energy(f"{OUT_DIR}/{out}")
         if E:

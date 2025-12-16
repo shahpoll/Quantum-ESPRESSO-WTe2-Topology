@@ -10,7 +10,7 @@ def plot_time_feasibility():
     # Standard CPU (e.g., 4-8 cores): ~3-4 hours for full workflow
     # GPU Node: ~20 minutes (Your actual experience)
     times = [240, 20] # Minutes
-    systems = ['Standard CPU Node\n(Est. 4 hours)', 'JARVIS GPU Node\n(~20 mins)']
+    systems = ['Standard CPU Node\n(Est. 4 hours)', 'GPU-Accelerated Node\n(~20 mins)']
     
     colors = ['gray', '#D50032']
 
@@ -19,10 +19,11 @@ def plot_time_feasibility():
     bars = ax.bar(systems, times, color=colors, edgecolor='black', width=0.6)
     
     # Annotations
-    ax.text(0, 245, "Slow Iteration Cycle", ha='center', va='bottom', color='gray', style='italic')
+    ax.text(0, 250, "Slow Iteration Cycle", ha='center', va='bottom', color='gray', style='italic', fontsize=11)
     ax.text(1, 25, "12x Speedup", ha='center', va='bottom', color='#D50032', fontweight='bold', fontsize=14)
     
     ax.set_ylabel("Time to Solution (Minutes)", fontsize=12)
+    ax.set_ylim(0, 300) # Add headroom for text
     ax.set_title("Workflow Efficiency: CPU vs GPU", fontsize=14)
     
     plt.tight_layout()

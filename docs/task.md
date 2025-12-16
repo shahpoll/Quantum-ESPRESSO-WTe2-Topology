@@ -17,7 +17,7 @@
     - [x] Update coordinates from `vc-relax`
     - [x] Create input file `wte2.scf.in`
     - [/] Run `scf` calculation - **IN PROGRESS (High-Performance: 60/720)**
-- [/] Step 3: Parity Analysis (The Z2 Check)
+    - [/] Step 3: Parity Analysis (The Z2 Check)
     - [x] Create input file `wte2.bands.in` (4 TRIM points)
     - [x] Run `bands` calculation - **SUCCESS**
     - [x] Run `bands` calculation (Recovery) - **SKIPPED (First attempt recovered)**
@@ -27,7 +27,10 @@
     - [x] Run `pw2wannier90` - **SUCCESS**
     - [x] Run `wannier90` (Minimization) - **SUCCESS**
     - [x] Run Wilson Loop Analysis (Z2) - **SUCCESS (SHC Calculated)**
-    - [ ] Run Wilson Loop Analysis
+    - [x] Run Wilson Loop Analysis
+- [ ] Step 5: Convergence Verification (Detour)
+    - [x] Create `run_convergence.py` script
+    - [/] Run Convergence Checks (Cutoff vs Energy) - **IN PROGRESS (GPU Optimized)**
 - [x] Documentation & Reporting
     - [x] Maintain `work_log.md` (Symlinked to workspace)
     - [x] Final Polish (SHC Shading + Ribbon Contrast) - **DONE**
