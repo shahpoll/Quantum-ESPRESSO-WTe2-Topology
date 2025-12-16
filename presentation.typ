@@ -162,6 +162,27 @@
   )
 ]
 
+// --- SLIDE 7b: COMPUTATIONAL EFFICIENCY ---
+#slide(title: "Workflow Acceleration")[
+  Topological characterization (Wannierization) is computationally expensive on standard hardware.
+  
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 20pt,
+    align(center)[
+      #image("figures/Fig_Feasibility_Time.png", height: 75%)
+    ],
+    align(horizon)[
+      *Performance:*
+      - *Standard Node:* ~4 hours/run (CPUs).
+      - *GPU-Accelerated Node:* ~20 mins/run.
+      
+      *Impact:* 
+      - 12x Speedup enabled rapid parameter tuning ($k$-mesh, disentanglement windows).
+    ]
+  )
+]
+
 // --- SLIDE 8: CONCLUSION & RESOURCES ---
 #slide(title: "Takeaways & Resources")[
   - *Summary:*

@@ -69,6 +69,11 @@ The fully relativistic band structure (Figure 3) reveals a semimetallic ground s
   caption: [Relativistic Electronic Band Structure. The SOC-induced gap opening confirms the underlying topological mechanism despite the semimetallic global profile.]
 )
 
+#figure(
+  image("figures/Fig_BZ_Schematic.png", width: 60%),
+  caption: [First Brillouin Zone of Monolayer 1T'-WTe#sub[2]. The red dashed line traces the high-symmetry path $bold(Gamma) arrow bold(X) arrow bold(M) arrow bold(Gamma) arrow bold(Y)$ used for the band structure calculation. The rectangular geometry reflects the $a eq.not b$ lattice anisotropy.]
+)
+
 // --- 4. TOPOLOGICAL INVARIANTS ---
 = Topological Verification ($Z_2 = 1$)
 We employ two independent theoretical probes to confirm the non-trivial topology.
@@ -97,7 +102,16 @@ To ensure the physical validity of our Wannier model, we rigorously monitored th
 
 #figure(image("figures/validation_dft_vs_wannier.png", width: 85%), caption: [Basis Set Completeness. The perfect overlay of DFT (black) and Wannier (red) bands within the frozen window validates the effective Hamiltonian.])
 
-// --- 6. CONCLUSION ---
+// --- 6. COMPUTATIONAL PERFORMANCE ---
+= Computational Efficiency
+The prohibitive cost of dense k-mesh Wannierization necessitates high-performance computing resources. We benchmarked the time-to-solution for the full topological characterization workflow. By leveraging GPU acceleration for the `pw.x` SCF/NSCF cycles and optimizing the Wannier90 disentanglement routines on a high-memory node, we achieved a 12-fold reduction in total wall time compared to standard CPU-based workstations.
+
+#figure(
+  image("figures/Fig_Feasibility_Time.png", width: 85%),
+  caption: [Workflow Acceleration. The utilization of GPU-accelerated nodes reduces the iteration cycle from hours to minutes, enabling rapid parameter space exploration.]
+)
+
+// --- 7. CONCLUSION ---
 = Conclusion
 We have successfully characterized the topological electronic structure of monolayer 1T'-WTe#sub[2]. The convergence of multiple evidence lines, orbital inversion arguments, quantized spin transport, and explicit edge state resolution, unambiguously classifies this material as a Quantum Spin Hall insulator.
 
