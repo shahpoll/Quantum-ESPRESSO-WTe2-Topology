@@ -48,11 +48,11 @@
 
 // --- SLIDE 1: TITLE ---
 #align(center + horizon)[
-  #text(28pt, weight: "bold", fill: accent-color)[A Quantum ESPRESSO Recipe for $Z_2$ Invariant of 2D Topological Material 1T'-WTe#sub[2]]
+  #text(28pt, weight: "bold", fill: accent-color)[A Quantum ESPRESSO Recipe for $Z_2$ Invariant of 2D Topological Material 1T#super[#sym.prime]-WTe#sub[2]]
   #v(1em)
   
   // Authors
-  #text(18pt)[
+  #text(20pt)[
     Shahriar Pollob#super[1, \*], 
     Apu Das#super[2], 
     Mohammad Dilwar Ali Alvee#super[3], 
@@ -62,14 +62,15 @@
   #v(1em)
   
   // Affiliations
-  #text(14pt, style: "italic", fill: text-color.lighten(20%))[
+  #text(15pt, style: "italic", fill: text-color.lighten(20%))[
     #super[1] Department of Physics, Shahjalal University of Science and Technology, Sylhet-3114, Bangladesh \
     #super[2] Department of Theoretical Physics, University of Dhaka, Dhaka-1000, Bangladesh \
     #super[3] Department of Materials Science & Engineering, Khulna University of Engineering & Technology, Khulna-9203, Bangladesh \
-    #super[4] Department of Physics, University of Miami, Coral Gables, Florida 33124, USA
+    #super[4] Department of Physics, University of Miami, Coral Gables, Florida 33124, USA \ 
+    #super[\*] Presenter 
   ]
 
-  #v(2em)
+  #v(0.8em)
   #line(length: 60%, stroke: 1pt + text-color)
   #v(0.5em)
   #text(20pt)[*ICAP 2025* | SUST] \
@@ -96,7 +97,7 @@
     ],
     align(center + horizon)[
       #image("figures/Fig_Structure_Views_V2.png", width: 90%)
-      #text(16pt, style: "italic")[The 1T' Distorted Structure: A Playground for Topology]
+      #text(16pt, style: "italic")[The 1T#super[#sym.prime] Distorted Structure: A Playground for Topology]
     ]
   )
 ]
@@ -164,7 +165,7 @@
         *Significance:*
         - The fundamental gap opens at $bold(Gamma)$.
         - The $bold(M) arrow bold(Gamma)$ diagonal is critical for identifying background nodal lines.
-        - Rectangular BZ reflects the 1T' anisotropy.
+        - Rectangular BZ reflects the 1T#super[#sym.prime] anisotropy.
       ]
     ]
   )
@@ -294,7 +295,7 @@
 
 // --- SLIDE 11: VERDICT ---
 #slide(title: "The Verdict: Unambiguous QSH Insulator")[
-  Our "Recipe" successfully characterizes 1T'-WTe#sub[2].
+  Our "Recipe" successfully characterizes 1T#super[#sym.prime]-WTe#sub[2].
   
   #grid(
     columns: (1fr, 1fr),
