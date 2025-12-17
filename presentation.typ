@@ -50,9 +50,25 @@
 #align(center + horizon)[
   #text(28pt, weight: "bold", fill: accent-color)[A Quantum ESPRESSO Recipe for $Z_2$ Invariant of 2D Topological Material 1T'-WTe#sub[2]]
   #v(1em)
-  #text(22pt)[*Shahriar Pollob*]
-  #v(0.2em)
-  #text(18pt, style: "italic")[Supervised by M. Shahnoor Rahman]
+  
+  // Authors
+  #text(18pt)[
+    *Shahriar Pollob*#super[1, *], 
+    Apu Das#super[2], 
+    Mohammad Dilwar Ali Alvee#super[3], \
+    and M. Shahnoor Rahman#super[4]
+  ]
+  
+  #v(1em)
+  
+  // Affiliations
+  #text(14pt, style: "italic", fill: text-color.lighten(20%))[
+    #super[1] Department of Physics, Shahjalal University of Science and Technology, Sylhet-3114, Bangladesh \
+    #super[2] Department of Theoretical Physics, University of Dhaka, Dhaka-1000, Bangladesh \
+    #super[3] Department of Materials Science & Engineering, Khulna University of Engineering & Technology, Khulna-9203, Bangladesh \
+    #super[4] Department of Physics, University of Miami, Coral Gables, Florida 33124, USA
+  ]
+
   #v(2em)
   #line(length: 60%, stroke: 1pt + text-color)
   #v(0.5em)
