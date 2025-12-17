@@ -53,7 +53,7 @@
   
   // Authors
   #text(18pt)[
-    *Shahriar Pollob*#super[1, \*], 
+    Shahriar Pollob#super[1, \*], 
     Apu Das#super[2], 
     Mohammad Dilwar Ali Alvee#super[3], 
     M. Shahnoor Rahman#super[4]
