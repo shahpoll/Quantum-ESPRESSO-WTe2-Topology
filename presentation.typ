@@ -81,7 +81,7 @@
 // --- SLIDE 2: MOTIVATION ---
 #slide(title: "Motivation: The Quest for Dissipationless Electronics")[
   #align(center + horizon)[
-    #stack(dir: ltr, spacing: 20pt,
+    #stack(dir: ttb, spacing: 20pt,
       card[
         *The Bottleneck:* \
         Modern electronics suffer from Joule heating and backscattering limits.
@@ -99,12 +99,12 @@
 ]
 
 // --- SLIDE 2b: STRUCTURE ---
-#slide(title: "The Material: 1T#super[#sym.prime]-WTe#sub[2] Structure")[
+#slide(title: [The Material: 1T#super[#sym.prime]-WTe#sub[2] Structure])[
   #grid(
     columns: (1.5fr, 1fr),
     gutter: 30pt,
     align(center + horizon)[
-      #image("figures/Fig_Structure_3D_Presentation.png", width: 100%)
+      #image("figures/Fig_Structure_3D_Presentation.png", width: 85%)
     ],
     [
       #card[
@@ -112,9 +112,9 @@
         Distorted Octahedral ($1T#super[#sym.prime]$) phase.
         
         *Key Features:*
-        - **Buckled Layers:** Atoms are not planar, creating local electric fields.
-        - **Zigzag Chains:** Tungsten (W) atoms form 1D chains along the $a$-axis.
-        - **Anisotropy:** distinct $a$ and $b$ lattice constants ($a approx 3.49, b approx 6.33$).
+        - *Buckled Layers:* Atoms are not planar, creating local electric fields.
+        - *Zigzag Chains:* Tungsten (W) atoms form 1D chains along the $a$-axis.
+        - *Anisotropy:* distinct $a$ and $b$ lattice constants ($a approx 3.49, b approx 6.33$).
       ]
     ]
   )
