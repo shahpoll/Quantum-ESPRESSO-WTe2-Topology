@@ -101,7 +101,7 @@
 
 
 // --- SLIDE 3: 1T PHASE (IDEAL) ---
-#slide(title: "The Educational Journey: 1. The Ideal $1T$ Phase")[
+#slide(title: "Crystal Structure: The Ideal $1T$ Phase")[
   #grid(
     columns: (1.2fr, 1fr),
     gutter: 1em,
@@ -125,7 +125,7 @@
   )
 ]
 
-#slide(title: "The Educational Journey: 2. The Distorted $1T#super[#sym.prime]$ Phase")[
+#slide(title: "Crystal Structure: The Distorted $1T#super[#sym.prime]$ Phase")[
   #grid(
     columns: (1.2fr, 1fr),
     gutter: 1em,
