@@ -175,20 +175,22 @@ def plot_3d_structure():
     # Isometric View
     ax.view_init(elev=30, azim=-60)
     
-    # Aspect Ratio - CRITICAL for removing whitespace
-    # We want X and Y to be proportional, and Z to be squashed
-    ax.set_box_aspect((np.ptp(xs), np.ptp(ys), 0.3 * np.ptp(xs))) 
+    # Aspect Ratio - FIXED for Flipbook Alignment
+    # X range = 10 (-2 to 8), Y range = 10 (-4 to 6) -> Ratio 1:1
+    # Z range = 6 (-3 to 3) -> Ratio 0.6 relative to X?
+    # Let's set strictly.
+    ax.set_box_aspect((10, 10, 2)) 
     
     # Labels
     ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
     ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
-    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=15) # Increased padding to prevent cutoff
-    ax.set_title("1T'-WTe2 Crystal Structure", pad=0)
+    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=15)
+    # ax.set_title("1T'-WTe2 Crystal Structure", pad=0) # Removed for seamless transition
     
-    # Limits
-    ax.set_xlim(min(xs), max(xs))
-    ax.set_ylim(min(ys), max(ys))
-    ax.set_zlim(z_mean - 2, z_mean + 2)
+    # Limits - FIXED
+    ax.set_xlim(-2, 8)
+    ax.set_ylim(-4, 6)
+    ax.set_zlim(-3, 3)
     
     # Turn off Z ticks? They don't mean much for a floating monolayer
     ax.set_zticks([])
@@ -196,7 +198,7 @@ def plot_3d_structure():
     # Save
     out_dir = os.path.dirname(os.path.abspath(__file__)) + "/../figures"
     if not os.path.exists(out_dir): os.makedirs(out_dir)
-    plt.savefig(f"{out_dir}/Fig_Structure_3D_Presentation.png", dpi=300, bbox_inches='tight')
+    plt.savefig(f"{out_dir}/Fig_Structure_3D_Presentation.png", dpi=300, bbox_inches='tight', pad_inches=0.1)
     print(f"Saved {out_dir}/Fig_Structure_3D_Presentation.png")
 
 if __name__ == "__main__":

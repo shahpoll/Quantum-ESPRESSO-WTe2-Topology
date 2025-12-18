@@ -120,10 +120,12 @@ def plot_1T_3d():
     # elev=30, azim=-60 is standard isometric
     ax.view_init(elev=30, azim=-60)
     
-    # Limits - tight around 0,0
-    limit = 5
-    ax.set_xlim(-2, 6)
-    ax.set_ylim(-2, 6)
+    # Aspect Ratio - FIXED MATCHING 1T'
+    ax.set_box_aspect((10, 10, 2))
+    
+    # Limits - FIXED MATCHING 1T'
+    ax.set_xlim(-2, 8)
+    ax.set_ylim(-4, 6)
     ax.set_zlim(-3, 3)
     
     ax.set_axis_off()

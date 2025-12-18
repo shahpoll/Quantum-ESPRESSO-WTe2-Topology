@@ -98,27 +98,7 @@
   ]
 ]
 
-// --- SLIDE 2b: STRUCTURE ---
-#slide(title: [The Material: 1T#super[#sym.prime]-WTe#sub[2] Structure])[
-  #grid(
-    columns: (1.5fr, 1fr),
-    gutter: 30pt,
-    align(center + horizon)[
-      #image("figures/Fig_Structure_3D_Presentation.png", width: 85%)
-    ],
-    [
-      #card[
-        *Crystal Symmetry:* \
-        Distorted Octahedral ($1T#super[#sym.prime]$) phase.
-        
-        *Key Features:*
-        - *Buckled Layers:* Atoms are not planar, creating local electric fields.
-        - *Zigzag Chains:* Tungsten (W) atoms form 1D chains along the $a$-axis.
-        - *Anisotropy:* distinct $a$ and $b$ lattice constants ($a approx 3.49, b approx 6.33$).
-      ]
-    ]
-  )
-]
+
 
 // --- SLIDE 3: 1T PHASE (IDEAL) ---
 #slide(title: [The Educational Journey: 1. The Ideal $1T$ Phase])[
