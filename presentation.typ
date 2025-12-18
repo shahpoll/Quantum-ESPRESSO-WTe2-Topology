@@ -354,17 +354,15 @@
         *Final Conclusion:* \
         1T'-WTe#sub[2] is a robust Quantum Spin Hall Insulator suitable for room-temperature spintronics.
       ]
-      #v(2em)
-      #align(center)[
-        *Code & Data:* \
-        github.com/shahpoll/Quantum-ESPRESSO-WTe2-Topology
-        
-        *Release:* \
-        `v1.0-ICAP2025` (Verified Artifact)
-      ]
     ],
-    align(center)[
-      #image("figures/Fig_Repo_QR.png", width: 60%)
+    align(center + horizon)[
+      #image("figures/Fig_Repo_QR_Branded.png", width: 60%)
+      #v(1em)
+      *Code & Data:* \
+      #text(16pt)[github.com/shahpoll/Quantum-ESPRESSO-WTe2-Topology]
+      #v(0.5em)
+      *Release:* \
+      #text(16pt)[`v1.0-ICAP2025` (Verified Artifact)]
     ]
   )
 ]
