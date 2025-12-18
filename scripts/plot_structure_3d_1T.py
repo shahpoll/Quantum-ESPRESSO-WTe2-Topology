@@ -61,49 +61,35 @@ def plot_1T_3d():
             
     coords = np.array(coords)
     
+    # --- COORDINATE ALIGNMENT ---
+    # Shift 1T atoms to match the "Center of Mass" of the 1T' figure window.
+    # Target Box (from 1T' Debug):
+    # X: -0.1 to 5.74 -> Center ~ 2.82
+    # Y: 0.82 to 12.91 -> Center ~ 6.87
+    # Z: 6.96 to 12.96 -> Center ~ 9.96
+    
+    target_center = np.array([2.82, 6.87, 9.96])
+    
+    # Current Center
+    current_center = np.mean(coords, axis=0)
+    shift = target_center - current_center
+    
+    coords += shift
+    
     # --- PLOTTING ---
     
-    # Plot Atoms with Highlight Logic
-    # 1T Logic: We manually built a 3x3 supercell.
-    # Indices: i ranges -1 to nx-1 (-1, 0, 1). j ranges -1 to ny-1 (-1, 0, 1).
-    # We want the Central Cell (i=0, j=0) highlighted.
+    # Plot Atoms
+    # Re-extract shifted columns for plotting
+    xs = coords[:, 0]
+    ys = coords[:, 1]
+    zs = coords[:, 2]
     
-    for idx, (x, y, z) in enumerate(coords): # idx isn't loop var, enumerate
-        # Recover i,j from order? 
-        # Loop structure was: for i... for j... 
-        # i runs -1, 0, 1. j runs -1, 0, 1.
-        # Total 9 cells. i=0, j=0 is the 5th cell (index 4) if flattened?
-        # Actually simplest is to check position!
-        # Highlighting atom near origin (0,0)
-        
-        # Check if approx inside Unit Cell parallelogram?
-        # Unit cell vectors a1, a2.
-        # Check if x*a1 + y*a2?
-        # Simple distance check from Origin is easiest for visuals.
-        # But cell 0,0 starts at origin.
-        
-        # We manually constructed the list.
-        # Let's count. 
-        # i=-1: j=-1,0,1 (3 cells)
-        # i=0:  j=-1,0,1 (3 cells). Index 3,4,5.
-        # j=0 is the middle one of i=0 loop.
-        # So "Primary" atoms are those generated when i=0, j=0.
-        
-        # We process 3 atoms per cell (W, Te1, Te2).
-        # i ranges -1..1 (3 values). j ranges -1..1 (3 values). 9 cells total.
-        # 27 atoms total.
-        # The (0,0) cell is the 5th cell (index 4).
-        # Atoms 12, 13, 14.
-        
+    for idx, (x, y, z) in enumerate(coords):
         floor_idx = idx // 3 # Which cell number
-        # Cell order: 
-        # i=-1, j=-1 (0)
-        # i=-1, j=0  (1)
-        # i=-1, j=1  (2)
-        # i=0,  j=-1 (3)
-        # i=0,  j=0  (4) -> TARGET
-        
-        is_primary = (floor_idx == 4)
+        # Recalculate primary cell since we kept nx=2,ny=2 from previous Step 6167
+        # 12 atoms total. cell order logic is same.
+        # But we must ensure highlighting works.
+        is_primary = (floor_idx == 3) # Target central
 
         atom = species[idx]
         if atom == 'W':
@@ -145,63 +131,46 @@ def plot_1T_3d():
                 ax.plot([p1[0], p2[0]], [p1[1], p2[1]], [p1[2], p2[2]], 
                        color='gray', alpha=0.4, linewidth=2)
 
-    # Unit Cell Box (for center cell)
-    # 0,0 to 1,0 to 1,1 to 0,1
-    # Just draw a rhombus on the plane z=0?
-    # Or simple box. Let's draw the "Unit Cell" outline for clarity.
-    cell_origin = np.array([0, 0, 0])
-    # Rhombus
+    # Unit Cell Box (Center Cell)
+    # Re-calculate box points based on shifted origin
+    # Primary cell is index 3 => (i=0, j=0)
+    # The 'origin' variable in loop was for (0,0,0) shift.
+    # We need to find the shift applied to the (0,0) cell lattice points.
+    # Original 'origin' for i=0,j=0 was (0,0,0) before manual shift.
+    # So new origin is just 'shift'.
+    # Let's anchor the box there.
+    
+    box_origin = shift # Assuming W(0,0) was at 0,0,0 and is now at 'shift'.
+    # Need to project to mean Z plane
+    z_mean_new = np.mean(zs)
+    box_origin[2] = z_mean_new
+    
     uc_corners = [
-        cell_origin,
-        cell_origin + a1,
-        cell_origin + a1 + a2,
-        cell_origin + a2,
-        cell_origin
+        box_origin,
+        box_origin + a1,
+        box_origin + a1 + a2,
+        box_origin + a2,
+        box_origin
     ]
     uc_x = [p[0] for p in uc_corners]
     uc_y = [p[1] for p in uc_corners]
-    uc_z = [0]*5
+    uc_z = [p[2] for p in uc_corners]
     ax.plot(uc_x, uc_y, uc_z, color='red', linestyle='--', linewidth=2, label='Unit Cell')
-    
 
-    # --- CAMERA & LIMITS ---
-    # Match the 3D 1T' view roughly
-    # elev=30, azim=-60 is standard isometric
+    # --- CAMERA & LIMITS (EXACT 1T' MATCH) ---
     ax.view_init(elev=30, azim=-60)
     
-    # Aspect Ratio - FIXED MATCHING 1T'
-    ax.set_box_aspect((10, 10, 2))
+    # Hardcoded Dimensions from Debug
+    ax.set_xlim(-0.1, 5.75)
+    ax.set_ylim(0.82, 12.92)
+    ax.set_zlim(6.96, 12.96)
     
-    # Limits - FIXED MATCHING 1T'
-    ax.set_xlim(-2, 8)
-    ax.set_ylim(-4, 6)
-    ax.set_zlim(-3, 3)
+    ax.set_box_aspect((0.80, 1.55, 0.77))
     
-    ax.set_axis_off()
-    
-    # Labels
-    ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
-    ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
-    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=25)
-    ax.set_title(r"1T-WTe$_2$ (Ideal)", pad=0, fontsize=24)
-    
-    # Limits - DYNAMIC TIGHT CROP
-    # This prevents the "disappearing lattice" issue if coords aren't at origin
-    xs = coords[:, 0]
-    ys = coords[:, 1]
-    
-    x_min, x_max = xs.min(), xs.max()
-    y_min, y_max = ys.min(), ys.max()
-    padding = 0.5
-    
-    ax.set_xlim(x_min - 0.1, x_max + padding)
-    ax.set_ylim(y_min - padding, y_max + padding)
-    ax.set_zlim(-3, 3) # Z is already centered around 0 in this script
-    
-    # Aspect Ratio - Match Data
-    x_range = x_max - x_min
-    y_range = y_max - y_min
-    ax.set_box_aspect((x_range + 2*padding, y_range + 2*padding, 6.0))
+    ax.xaxis.pane.fill = False
+    ax.yaxis.pane.fill = False
+    ax.zaxis.pane.fill = False
+    ax.grid(False)
     
     # Labels
     ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
