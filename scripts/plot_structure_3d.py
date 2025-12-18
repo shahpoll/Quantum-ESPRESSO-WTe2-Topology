@@ -230,18 +230,33 @@ def plot_3d_structure():
     ax.view_init(elev=30, azim=-60)
     
     # Aspect Ratio - FIXED for Flipbook Alignment
-    ax.set_box_aspect((7.5, 8.5, 5.0)) 
+    # X range = 10 (-2 to 8), Y range = 10 (-4 to 6) -> Ratio 1:1
+    # Z range = 6 (-3 to 3) -> Ratio 0.6 relative to X?
+    # Let's set strictly.
+    ax.set_box_aspect((10, 10, 2)) 
     
     # Labels
     ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
     ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
-    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=25)
+    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=25) # Increased padding to fix distortion/clipping
     ax.set_title(r"1T'-WTe$_2$ (Distorted)", pad=0, fontsize=24) 
     
     # Limits - TIGHTENED to remove whitespace
-    ax.set_xlim(-0.5, 7.0)
-    ax.set_ylim(-1.0, 7.5)
-    ax.set_zlim(-2.5, 2.5)
+    # Atoms roughly 0 to 7 in X/Y.
+    # Center around (3.5, 3.5).
+    # Range of 8 should be enough? (0 to 8)
+    # Limits - DYNAMIC to strict bounding box + padding
+    x_range = np.max(xs) - np.min(xs)
+    y_range = np.max(ys) - np.min(ys)
+    padding = 0.5
+    
+    ax.set_xlim(np.min(xs) - padding, np.max(xs) + padding)
+    ax.set_ylim(np.min(ys) - padding, np.max(ys) + padding)
+    ax.set_zlim(np.mean(zs) - 3, np.mean(zs) + 3)
+    
+    # Aspect Ratio - Match the Data Ratio exactly
+    # Z range is fixed at 6 (-3 to 3 relative)
+    ax.set_box_aspect((x_range + 2*padding, y_range + 2*padding, 6.0))
     
     # Turn ON Z ticks
     
