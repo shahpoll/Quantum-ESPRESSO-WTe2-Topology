@@ -118,8 +118,8 @@
     [
       #card[
         *Key Features:* \
-        - *Band Inversion:* $p$-orbital bands swap parity near $\Gamma$.
-        - *Spin-Orbit Coupling:* Essential for opening the gap ($E_g \approx 50$ meV).
+        - *Band Inversion:* $p$-orbital bands swap parity near $Gamma$.
+        - *Spin-Orbit Coupling:* Essential for opening the gap ($E_g approx 50$ meV).
         - *Direct Gap:* Located at $Q$ point (monolayer feature).
       ]
     ]
