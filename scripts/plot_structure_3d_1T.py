@@ -63,19 +63,68 @@ def plot_1T_3d():
     
     # --- PLOTTING ---
     
-    # Plot Atoms
-    for i, (x, y, z) in enumerate(coords):
-        atom = species[i]
+    # Plot Atoms with Highlight Logic
+    # 1T Logic: We manually built a 3x3 supercell.
+    # Indices: i ranges -1 to nx-1 (-1, 0, 1). j ranges -1 to ny-1 (-1, 0, 1).
+    # We want the Central Cell (i=0, j=0) highlighted.
+    
+    for idx, (x, y, z) in enumerate(coords): # idx isn't loop var, enumerate
+        # Recover i,j from order? 
+        # Loop structure was: for i... for j... 
+        # i runs -1, 0, 1. j runs -1, 0, 1.
+        # Total 9 cells. i=0, j=0 is the 5th cell (index 4) if flattened?
+        # Actually simplest is to check position!
+        # Highlighting atom near origin (0,0)
+        
+        # Check if approx inside Unit Cell parallelogram?
+        # Unit cell vectors a1, a2.
+        # Check if x*a1 + y*a2?
+        # Simple distance check from Origin is easiest for visuals.
+        # But cell 0,0 starts at origin.
+        
+        # We manually constructed the list.
+        # Let's count. 
+        # i=-1: j=-1,0,1 (3 cells)
+        # i=0:  j=-1,0,1 (3 cells). Index 3,4,5.
+        # j=0 is the middle one of i=0 loop.
+        # So "Primary" atoms are those generated when i=0, j=0.
+        
+        # We process 3 atoms per cell (W, Te1, Te2).
+        # i ranges -1..1 (3 values). j ranges -1..1 (3 values). 9 cells total.
+        # 27 atoms total.
+        # The (0,0) cell is the 5th cell (index 4).
+        # Atoms 12, 13, 14.
+        
+        floor_idx = idx // 3 # Which cell number
+        # Cell order: 
+        # i=-1, j=-1 (0)
+        # i=-1, j=0  (1)
+        # i=-1, j=1  (2)
+        # i=0,  j=-1 (3)
+        # i=0,  j=0  (4) -> TARGET
+        
+        is_primary = (floor_idx == 4)
+
+        atom = species[idx]
         if atom == 'W':
-            color = '#2c3e50' # Dark Blue/Slate
-            size = 400
-            zorder = 10
-        else: # Te
-            color = '#f39c12' # Orange
-            size = 300
-            zorder = 9
+            base_color = '#2c3e50'
+        else:
+            base_color = '#f39c12'
             
-        ax.scatter(x, y, z, s=size, c=color, edgecolors='black', alpha=1.0, zorder=zorder)
+        if is_primary:
+            color = base_color
+            alpha = 1.0
+            edgecolor = 'black'
+        else:
+            if atom == 'W': color = '#bdc3c7'
+            else: color = '#fcd088'
+            alpha = 0.8
+            edgecolor = 'gray'
+            
+        size = 400 if atom == 'W' else 300
+        zorder = 10 if atom == 'W' else 9
+            
+        ax.scatter(x, y, z, s=size, c=color, edgecolors=edgecolor, alpha=1.0, zorder=zorder)
         
     # Plot Bonds
     # 1T Coordination: Each W connected to 6 Te (3 top, 3 bottom)
@@ -130,8 +179,11 @@ def plot_1T_3d():
     
     ax.set_axis_off()
     
-    # Title? Use Clean look.
-    # ax.set_title("1T Phase (Ideal)", fontsize=24)
+    # Labels
+    ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
+    ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
+    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=15)
+    ax.set_title(r"1T-WTe$_2$ (Ideal)", pad=20, fontsize=24)
     
     out_dir = os.path.dirname(os.path.abspath(__file__)) + "/../figures"
     if not os.path.exists(out_dir): os.makedirs(out_dir)

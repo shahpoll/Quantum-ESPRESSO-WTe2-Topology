@@ -135,11 +135,65 @@ def plot_3d_structure():
     ys = [a['pos'][1] for a in atoms]
     zs = [a['pos'][2] for a in atoms]
     species = [a['s'] for a in atoms]
+
+    # Identify Central Cell Atoms vs Supercell Ghosts
+    # "Central" if they are the original atoms (before expansion loop in get_supercell logic)
+    # Actually get_supercell returns a flat list.
+    # Logic: The first N atoms are usually the unit cell? No, get_supercell iterates lattice.
+    # Let's filter by position? If inside unit cell?
+    # Simple Heuristic: If x,y is roughly within 0..a and 0..b?
+    # Better: Identify indices.
     
-    colors = ['#2c3e50' if s == 'W' else '#f39c12' for s in species]
-    sizes = [400 if s == 'W' else 200 for s in species] # 3D scatter requires diff scaling?
+    # Let's rewrite get_supercell to track if it's the central cell (i=0, j=0, k=0)
+    # But existing get_supercell is: for i,j,k...
+    # We can assume central cell is somewhere in the middle of 2x2?
+    # The user wants "one unit cell bold".
+    # Let's pick the cell at index (0,0) or (1,0)?
+    # Since visual box is 2x2, let's pick cell (0,0) as Bold.
     
-    ax.scatter(xs, ys, zs, c=colors, s=sizes, edgecolors='black', depthshade=True, alpha=1.0)
+    colors = []
+    alphas = []
+    edgecolors = []
+    
+    # Re-calculate which cell each atom belongs to
+    n_unit = len(unit_atoms)
+    
+    for idx, atom in enumerate(atoms):
+        species_s = atom['s'] # Renamed to avoid conflict with outer 'species' list
+        # Determine if this atom belongs to the "Primary" Unit Cell
+        # We constructed it by looping i,j,k.
+        # idx % n_unit gives index in unit cell.
+        # idx // n_unit gives cell index.
+        # Loop order: i(0..nx), j(0..ny), k(0..nz).
+        # We want i=0, j=0, k=0 (First block) to be bold?
+        # Or maybe the one in the middle?
+        # Let's make the FIRST cell bold for clarity.
+        
+        is_primary = (idx < n_unit) 
+        
+        if species_s == 'W':
+            base_color = '#2c3e50'
+        else:
+            base_color = '#f39c12'
+            
+        if is_primary:
+            colors.append(base_color) # Bold
+            alphas.append(1.0)
+            edgecolors.append('black')
+        else:
+            # Ghost / Faded
+            # Use distinct light color or just alpha?
+            # User said: "make it a bit light colored"
+            if species_s == 'W':
+                colors.append('#bdc3c7') # Light Gray/Blue
+            else:
+                colors.append('#fcd088') # Light Orange
+            alphas.append(0.8) # Slight fade
+            edgecolors.append('gray')
+
+    sizes = [400 if s == 'W' else 200 for s in species]
+    
+    ax.scatter(xs, ys, zs, c=colors, s=sizes, edgecolors=edgecolors, depthshade=False, alpha=alphas)
     
     # 3. Draw Unit Cell Box (In-Plane Only for Monolayer)
     # Drawing full vacuum box creates huge whitespace. 
@@ -181,19 +235,21 @@ def plot_3d_structure():
     # Let's set strictly.
     ax.set_box_aspect((10, 10, 2)) 
     
-    # Labels
+    # Labels (Restored)
     ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
     ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
     ax.set_zlabel(r"$z$ ($\AA$)", labelpad=15)
-    # ax.set_title("1T'-WTe2 Crystal Structure", pad=0) # Removed for seamless transition
+    ax.set_title(r"1T'-WTe$_2$ (Distorted)", pad=20, fontsize=24) 
     
     # Limits - FIXED
     ax.set_xlim(-2, 8)
     ax.set_ylim(-4, 6)
     ax.set_zlim(-3, 3)
     
-    # Turn off Z ticks? They don't mean much for a floating monolayer
-    ax.set_zticks([])
+    # Turn ON Z ticks as user requested "numerify it"
+    # Or at least keep X/Y ticks.
+    # The user liked the "previous figure" which had axes.
+    # Ensuring ticks are visible.
     
     # Save
     out_dir = os.path.dirname(os.path.abspath(__file__)) + "/../figures"
