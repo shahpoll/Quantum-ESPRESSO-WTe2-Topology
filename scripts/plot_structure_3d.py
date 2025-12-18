@@ -235,26 +235,32 @@ def plot_3d_structure():
     # Let's set strictly.
     ax.set_box_aspect((10, 10, 2)) 
     
-    # Labels (Restored)
+    # Labels
     ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
     ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
-    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=15)
-    ax.set_title(r"1T'-WTe$_2$ (Distorted)", pad=20, fontsize=24) 
+    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=25) # Increased padding to fix distortion/clipping
+    ax.set_title(r"1T'-WTe$_2$ (Distorted)", pad=0, fontsize=24) 
     
-    # Limits - FIXED
-    ax.set_xlim(-2, 8)
-    ax.set_ylim(-4, 6)
+    # Limits - TIGHTENED to remove whitespace
+    # Atoms roughly 0 to 7 in X/Y.
+    # Center around (3.5, 3.5).
+    # Range of 8 should be enough? (0 to 8)
+    # Let's use (-0.5, 8.5)
+    ax.set_xlim(-0.5, 8.5)
+    ax.set_ylim(-1.0, 8.0)
     ax.set_zlim(-3, 3)
     
-    # Turn ON Z ticks as user requested "numerify it"
-    # Or at least keep X/Y ticks.
-    # The user liked the "previous figure" which had axes.
-    # Ensuring ticks are visible.
+    # Aspect ratio matches range
+    # X range = 9, Y range = 9
+    ax.set_box_aspect((9, 9, 2))
+    
+    # Turn ON Z ticks
     
     # Save
     out_dir = os.path.dirname(os.path.abspath(__file__)) + "/../figures"
     if not os.path.exists(out_dir): os.makedirs(out_dir)
-    plt.savefig(f"{out_dir}/Fig_Structure_3D_Presentation.png", dpi=300, bbox_inches='tight', pad_inches=0.1)
+    # Use tighter bbox padding
+    plt.savefig(f"{out_dir}/Fig_Structure_3D_Presentation.png", dpi=300, bbox_inches='tight', pad_inches=0.02)
     print(f"Saved {out_dir}/Fig_Structure_3D_Presentation.png")
 
 if __name__ == "__main__":

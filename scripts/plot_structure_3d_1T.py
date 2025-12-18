@@ -182,12 +182,20 @@ def plot_1T_3d():
     # Labels
     ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
     ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
-    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=15)
-    ax.set_title(r"1T-WTe$_2$ (Ideal)", pad=20, fontsize=24)
+    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=25)
+    ax.set_title(r"1T-WTe$_2$ (Ideal)", pad=0, fontsize=24)
+    
+    # Limits - FIXED MATCHING 1T'
+    ax.set_xlim(-0.5, 8.5)
+    ax.set_ylim(-1.0, 8.0)
+    ax.set_zlim(-3, 3)
+    
+    # Aspect Ratio - FIXED MATCHING 1T'
+    ax.set_box_aspect((9, 9, 2))
     
     out_dir = os.path.dirname(os.path.abspath(__file__)) + "/../figures"
     if not os.path.exists(out_dir): os.makedirs(out_dir)
-    plt.savefig(f"{out_dir}/Fig_Structure_3D_1T.png", dpi=300, bbox_inches='tight', pad_inches=0.1)
+    plt.savefig(f"{out_dir}/Fig_Structure_3D_1T.png", dpi=300, bbox_inches='tight', pad_inches=0.02)
     print(f"Saved {out_dir}/Fig_Structure_3D_1T.png")
 
 if __name__ == "__main__":
