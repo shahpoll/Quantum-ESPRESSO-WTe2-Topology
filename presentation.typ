@@ -123,6 +123,7 @@
   )
 ]
 
+// slide 4: 1T' phase (distorted) ---
 #slide(title: [Crystal Structure: The Distorted $1T#super[#sym.prime]$ Phase])[
   #grid(
     columns: (1.2fr, 1fr),
