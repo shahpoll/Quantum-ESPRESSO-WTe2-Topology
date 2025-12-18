@@ -36,10 +36,14 @@ def plot_1T_3d():
     coords = []
     species = []
     
-    # Create Large Primitive Grid to ensure we fill the view
-    # We will then select a central "Rectangular" cell to be the 'Primary' one.
-    nx_range = range(-3, 4)
-    ny_range = range(-2, 5)
+    # Create Strip of Lattice to match 1T' flow
+    # 1T' has atoms flowing roughly along Y (and slightly X due to skew)
+    # We want a "Ribbon" that contains the Red Box and extends up/right.
+    # Red Box is at i=0, j=0 (relative to our chosen origin).
+    # so we need i around 0, and j extending -1 to +3 or so.
+    
+    nx_range = range(-1, 2) # Narrow in X (just neighbors)
+    ny_range = range(-1, 4) # Long in Y (Flow direction)
     
     for i in nx_range:
         for j in ny_range:
@@ -61,39 +65,16 @@ def plot_1T_3d():
     coords = np.array(coords)
     
     # --- DEFINE RECTANGULAR CELL (Match 1T') ---
-    # The 1T' cell is roughly a 1x2 supercell of 1T.
-    # a_rect = a1
-    # b_rect = a1 + 2*a2 (Orthogonal to a1)
-    
     u_rect = a1
     v_rect = a1 + 2*a2
     
-    # Define the "Ideal" Box at the origin (0,0,0) initially
-    # We want a box starting at origin containing the atoms.
-    # For a perfect match, the box should be [0, u] x [0, v].
-    
-    # Identify atoms inside this Rectangular Box (Primary Cell)
-    # We'll use dot products to project atoms relative to a chosen origin.
-    # Let's pick origin such that it captures a nice full cell.
-    # If we pick (0,0), the box includes (0,0) W and (1,1) W (skew).
-    
-    # Let's find atoms in the box defined by parallelogram of u_rect, v_rect.
-    # Project coords onto normalized u and v?
-    # Or just geometric check: 
-    # pos = c1*u_rect + c2*v_rect. 0 <= c1 < 1, 0 <= c2 < 1.
-    
-    # Matrix M = [u, v, z_axis]. Inv(M) * pos = [c1, c2, c3]
-    # u = [a, 0, 0]
-    # v = [0, b, 0] (Since a1+2a2 is pure Y)
-    # So simple x,y bounds!
-    
-    x_limit = np.linalg.norm(u_rect) # 3.53
-    y_limit = np.linalg.norm(v_rect) # 6.12 approx
-    
     # We need to pick a "Reference Origin" for the lattice to define the box.
-    # Let's try picking one W atom near the middle of our generated cloud as the Box Origin.
-    # Our loops went -3..4. (0,0) is in middle. Let's use (0,0) W atom as origin.
+    # We want the box to be on the "central" atoms of our strip.
+    # Let's pick i=0, j=0.
     ref_origin = np.array([0., 0., 0.])
+    
+    x_limit = np.linalg.norm(u_rect) 
+    y_limit = np.linalg.norm(v_rect)
     
     primary_indices = []
     
@@ -102,10 +83,8 @@ def plot_1T_3d():
         rx = x - ref_origin[0]
         ry = y - ref_origin[1]
         
-        # Check tolerance to include atoms ON the boundary (corners)
-        # 1T' usually highlights the corner Ws + internal.
         tol = 0.1
-        
+        # Check geometric inclusion in the Rectangular Box at (0,0)
         if (-tol <= rx <= x_limit + tol) and (-tol <= ry <= y_limit + tol):
             primary_indices.append(idx)
             
