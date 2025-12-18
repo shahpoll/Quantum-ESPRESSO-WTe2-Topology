@@ -136,8 +136,8 @@
         
         *Properties:*
         - Isotropic Bonds (Gray).
-        - **Metallic:** Bands cross at Fermi level.
-        - **Unstable:** Spontaneously distorts at Low T.
+        - *Metallic:* Bands cross at Fermi level.
+        - *Unstable:* Spontaneously distorts at Low T.
       ]
     ]
   )
