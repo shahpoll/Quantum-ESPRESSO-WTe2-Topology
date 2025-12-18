@@ -250,7 +250,8 @@ def plot_3d_structure():
     y_range = np.max(ys) - np.min(ys)
     padding = 0.5
     
-    ax.set_xlim(np.min(xs) - padding, np.max(xs) + padding)
+    # Shave off left whitespace by reducing min padding
+    ax.set_xlim(np.min(xs) - 0.1, np.max(xs) + padding)
     ax.set_ylim(np.min(ys) - padding, np.max(ys) + padding)
     ax.set_zlim(np.mean(zs) - 3, np.mean(zs) + 3)
     
@@ -258,6 +259,26 @@ def plot_3d_structure():
     # Z range is fixed at 6 (-3 to 3 relative)
     ax.set_box_aspect((x_range + 2*padding, y_range + 2*padding, 6.0))
     
+    # Labels
+    ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
+    ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
+    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=12) # Reduced padding to bring closer
+    
+    # Title - Lowered
+    # 'y' controls vertical position (1.0 is top of box, >1 is above).
+    # Default is often >1. Let's try 0.95 or 1.0 strictly.
+    ax.set_title(r"1T'-WTe$_2$ (Distorted)", pad=-20, fontsize=24, y=1.02) 
+    
+    # Legend
+    from matplotlib.lines import Line2D
+    legend_elements = [
+        Line2D([0], [0], marker='o', color='w', label='W',
+               markerfacecolor='#2c3e50', markersize=15, markeredgecolor='black'),
+        Line2D([0], [0], marker='o', color='w', label='Te',
+               markerfacecolor='#f39c12', markersize=12, markeredgecolor='black')
+    ]
+    ax.legend(handles=legend_elements, loc='upper left', frameon=False, fontsize=14)
+
     # Turn ON Z ticks
     
     # Save

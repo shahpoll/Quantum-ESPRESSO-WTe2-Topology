@@ -194,7 +194,7 @@ def plot_1T_3d():
     y_min, y_max = ys.min(), ys.max()
     padding = 0.5
     
-    ax.set_xlim(x_min - padding, x_max + padding)
+    ax.set_xlim(x_min - 0.1, x_max + padding)
     ax.set_ylim(y_min - padding, y_max + padding)
     ax.set_zlim(-3, 3) # Z is already centered around 0 in this script
     
@@ -202,6 +202,24 @@ def plot_1T_3d():
     x_range = x_max - x_min
     y_range = y_max - y_min
     ax.set_box_aspect((x_range + 2*padding, y_range + 2*padding, 6.0))
+    
+    # Labels
+    ax.set_xlabel(r"$x$ ($\AA$)", labelpad=10)
+    ax.set_ylabel(r"$y$ ($\AA$)", labelpad=10)
+    ax.set_zlabel(r"$z$ ($\AA$)", labelpad=12)
+    
+    # Title
+    ax.set_title(r"1T-WTe$_2$ (Ideal)", pad=-20, fontsize=24, y=1.02)
+    
+    # Legend
+    from matplotlib.lines import Line2D
+    legend_elements = [
+        Line2D([0], [0], marker='o', color='w', label='W',
+               markerfacecolor='#2c3e50', markersize=15, markeredgecolor='black'),
+        Line2D([0], [0], marker='o', color='w', label='Te',
+               markerfacecolor='#f39c12', markersize=12, markeredgecolor='black')
+    ]
+    ax.legend(handles=legend_elements, loc='upper left', frameon=False, fontsize=14)
     
     out_dir = os.path.dirname(os.path.abspath(__file__)) + "/../figures"
     if not os.path.exists(out_dir): os.makedirs(out_dir)
