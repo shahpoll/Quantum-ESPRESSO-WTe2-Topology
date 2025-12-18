@@ -113,7 +113,7 @@
     [
       #set text(size: 18pt)
       #block(
-        fill: color.mix(white, blue, amount: 90%),
+        fill: blue.lighten(90%),
         inset: 1em,
         radius: 0.5em,
         width: 100%,
@@ -144,7 +144,7 @@
     [
       #set text(size: 18pt)
       #block(
-        fill: color.mix(white, red, amount: 90%),
+        fill: red.lighten(90%),
         inset: 1em,
         radius: 0.5em,
         width: 100%,
