@@ -101,47 +101,64 @@
 
 
 // --- SLIDE 3: 1T PHASE (IDEAL) ---
-#slide(title: [The Educational Journey: 1. The Ideal $1T$ Phase])[
+#slide(title: "The Educational Journey: 1. The Ideal $1T$ Phase")[
   #grid(
     columns: (1.2fr, 1fr),
-    gutter: 30pt,
-    align(center + horizon)[
-      #image("figures/Fig_Structure_3D_1T.png", width: 90%)
+    gutter: 1em,
+    [
+      #align(center + horizon)[
+        #image("figures/Fig_Structure_3D_1T.png", width: auto, height: 11cm)
+      ]
     ],
     [
-      #card[
-        *The "Parent" Structure:* \
-        - **Symmetry:** Perfect Octahedral Coordination.
-        - **Lattice:** Hexagonal / Triangular W Lattice.
-        
-        *Why it fails:*
-        - **Unstable:** High energy state.
-        - **Metallic:** No band gap.
-        - *Not Topological.*
-      ]
+      #set text(size: 18pt)
+      #block(
+        fill: color.mix(white, blue, amount: 90%),
+        inset: 1em,
+        radius: 0.5em,
+        width: 100%,
+        [
+          *The "Parent" Structure:*
+          - *Symmetry:* Perfect Octahedral Coordination.
+          - *Lattice:* Hexagonal / Triangular W Lattice.
+
+          *Why it fails:*
+          - *Unstable:* High energy state.
+          - *Metallic:* No band gap.
+          - *Not Topological:* Trivial band structure.
+        ]
+      )
     ]
   )
 ]
 
-// --- SLIDE 4: 1T' PHASE (REALITY) ---
-#slide(title: [The Educational Journey: 2. The Distorted $1T#super[#sym.prime]$ Phase])[
+#slide(title: "The Educational Journey: 2. The Distorted $1T#super[#sym.prime]$ Phase")[
   #grid(
     columns: (1.2fr, 1fr),
-    gutter: 30pt,
-    align(center + horizon)[
-      #image("figures/Fig_Structure_3D_Presentation.png", width: 90%)
+    gutter: 1em,
+    [
+      #align(center + horizon)[
+        #image("figures/Fig_Structure_3D_Presentation.png", width: auto, height: 11cm)
+      ]
     ],
     [
-      #card[
-        *The "Actual" Structure:* \
-        - **Symmetry:** Distorted (Peierls Instability).
-        - **Action:** W atoms dimerize along one axis.
-        
-        *The Consequence:*
-        - **Stable:** Energetically favorable.
-        - **Insulating:** Gap opens ($E_g > 0$).
-        - **Topological:** Inverted Band Order ($Z_2=1$).
-      ]
+      #set text(size: 18pt)
+      #block(
+        fill: color.mix(white, red, amount: 90%),
+        inset: 1em,
+        radius: 0.5em,
+        width: 100%,
+        [
+          *The "Real" Structure:*
+          - *Symmetry:* Distorted (Peierls Instability).
+          - *Action:* W atoms dimerize along one axis.
+
+          *The Magic:*
+          - *Stable:* Energetically favorable.
+          - *Insulating:* Gap opens ($E_g > 0$).
+          - *Topological:* Inverted Band Order ($Z_2=1$).
+        ]
+      )
     ]
   )
 ]
