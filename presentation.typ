@@ -98,6 +98,55 @@
   ]
 ]
 
+// --- SLIDE 3: 1T PHASE (IDEAL) ---
+#slide(title: "Crystal Structure: The Ideal $1T$ Phase")[
+  #grid(
+    columns: (1.2fr, 1fr),
+    gutter: 1em,
+    [
+      #align(center + horizon)[
+        #image("figures/Fig_Structure_3D_1T.png", width: auto, height: 10cm)
+      ]
+    ],
+    [
+      #card[
+        *The "Parent" Structure:* \
+        - *Symmetry:* Perfect Octahedral Coordination.
+        - *Lattice:* Hexagonal / Triangular W Lattice.
+        
+        *Why it fails:*
+        - *Unstable:* High energy state.
+        - *Metallic:* No band gap.
+        - *Not Topological:* Trivial band structure.
+      ]
+    ]
+  )
+]
+
+#slide(title: "Crystal Structure: The Distorted $1T#super[#sym.prime]$ Phase")[
+  #grid(
+    columns: (1.2fr, 1fr),
+    gutter: 1em,
+    [
+      #align(center + horizon)[
+        #image("figures/Fig_Structure_3D_Presentation.png", width: auto, height: 10cm)
+      ]
+    ],
+    [
+      #card[
+        *The "Real" Structure:* \
+        - *Symmetry:* Distorted (Peierls Instability).
+        - *Action:* W atoms dimerize along one axis.
+        
+        *The Magic:*
+        - *Stable:* Energetically favorable.
+        - *Insulating:* Gap opens ($E_g > 0$).
+        - *Topological:* Inverted Band Order ($Z_2=1$).
+      ]
+    ]
+  )
+]
+
 // --- SLIDE 5: PHASE TRANSITION SCHEMATIC ---
 // #slide(title: "Phase Transition Mechanism")[
 //    #align(center + horizon)[
@@ -160,9 +209,9 @@
     [
       #card[
         *Topological Protection:* \
-        - **Gapless States:** Crossing the bulk gap.
-        - **Conducting Channels:** Located physically at the edges.
-        - **Robustness:** Immune to non-magnetic disorder.
+        - *Gapless States:* Crossing the bulk gap.
+        - *Conducting Channels:* Located physically at the edges.
+        - *Robustness:* Immune to non-magnetic disorder.
       ]
     ]
   )
