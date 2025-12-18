@@ -111,23 +111,16 @@
       ]
     ],
     [
-      #set text(size: 18pt)
-      #block(
-        fill: blue.lighten(90%),
-        inset: 1em,
-        radius: 0.5em,
-        width: 100%,
-        [
-          *The "Parent" Structure:*
-          - *Symmetry:* Perfect Octahedral Coordination.
-          - *Lattice:* Hexagonal / Triangular W Lattice.
-
-          *Why it fails:*
-          - *Unstable:* High energy state.
-          - *Metallic:* No band gap.
-          - *Not Topological:* Trivial band structure.
-        ]
-      )
+      #card[
+        *The "Parent" Structure:* \
+        - *Symmetry:* Perfect Octahedral Coordination.
+        - *Lattice:* Hexagonal / Triangular W Lattice.
+        
+        *Why it fails:*
+        - *Unstable:* High energy state.
+        - *Metallic:* No band gap.
+        - *Not Topological:* Trivial band structure.
+      ]
     ]
   )
 ]
@@ -142,23 +135,16 @@
       ]
     ],
     [
-      #set text(size: 18pt)
-      #block(
-        fill: red.lighten(90%),
-        inset: 1em,
-        radius: 0.5em,
-        width: 100%,
-        [
-          *The "Real" Structure:*
-          - *Symmetry:* Distorted (Peierls Instability).
-          - *Action:* W atoms dimerize along one axis.
-
-          *The Magic:*
-          - *Stable:* Energetically favorable.
-          - *Insulating:* Gap opens ($E_g > 0$).
-          - *Topological:* Inverted Band Order ($Z_2=1$).
-        ]
-      )
+      #card[
+        *The "Real" Structure:* \
+        - *Symmetry:* Distorted (Peierls Instability).
+        - *Action:* W atoms dimerize along one axis.
+        
+        *The Magic:*
+        - *Stable:* Energetically favorable.
+        - *Insulating:* Gap opens ($E_g > 0$).
+        - *Topological:* Inverted Band Order ($Z_2=1$).
+      ]
     ]
   )
 ]
